@@ -4,7 +4,7 @@ from functions import criterio_termino, solucion_inicial, asignacion_datos
 from random import shuffle
 import numpy as np
 
-solucion_inicial = solucion_inicial()
+solucion_inicial = solucion_inicial(numero_puestos)
 print(solucion_inicial)
 # vecindario = [None] * numeroPuestos
 # solucion = solucion_inicial()

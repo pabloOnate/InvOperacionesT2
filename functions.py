@@ -55,8 +55,8 @@ def criterio_termino(T):
     return False
 
 
-def solucion_inicial():
-    solucion_inicial = np.arange(56)
+def solucion_inicial(numero_puestos):
+    solucion_inicial = np.arange(numero_puestos)
     np.random.shuffle(solucion_inicial)
     return solucion_inicial
 
