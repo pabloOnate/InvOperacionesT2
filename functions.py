@@ -1,6 +1,5 @@
 import math
 import random
-from processData import t_minima
 
 # Función para transformar los datos de la matriz en enteros
 import numpy as np
