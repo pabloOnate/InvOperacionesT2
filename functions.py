@@ -3,6 +3,7 @@ import random
 from processData import t_minima
 
 # Función para transformar los datos de la matriz en enteros
+import numpy as np
 def convertir_matriz_int(n_filas, n_columnas, matriz):
     for i in range(0, n_filas-1):
         for j in range(0, n_columnas-1):
@@ -55,7 +56,9 @@ def criterio_termino(T):
 
 
 def solucion_inicial():
-    return 0
+    solucion_inicial = np.arange(56)
+    np.random.shuffle(solucion_inicial)
+    return solucion_inicial
 
 def criterio_aceptacion(s_ast,s,t_inicial):
     delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
