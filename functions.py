@@ -49,7 +49,7 @@ def funcion_objetivo(datos):
     
     return 0
 
-def criterio_termino(T):
+def criterio_termino(T,t_minima):
     if T <= t_minima:
         return True
     return False
@@ -70,3 +70,30 @@ def criterio_aceptacion(s_ast,s,t_inicial):
     if random.random() < p:
         return True
     return False
+
+def mejor_solucion(s,s_plus):
+    return 0
+
+def siguiente_vecino():
+    return 0
+
+def enfriamiento(t,alpha):
+    t = t*alpha
+    return t
+
+def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes,t_inicial,t_minima,alpha):
+    s = solucion_inicial(numero_puestos)
+    s_plus = s
+    T = t_inicial
+    while not criterio_termino(T,t_minima):
+        s_ast = siguiente_vecino()
+        delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
+        if delta_s < 0:
+            s = s_ast
+        else:   
+            p = math.exp(-delta_s/t_inicial)
+            if random.random() < p:
+                s = s_ast
+        s_plus = mejor_solucion(s,s_plus)
+        T = enfriamiento(T,alpha)
+    return s_plus
