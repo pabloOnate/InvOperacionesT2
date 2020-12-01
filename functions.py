@@ -1,9 +1,13 @@
+import math
+import random
+
 # Función para transformar los datos de la matriz en enteros
 def convertir_matriz_int(n_filas, n_columnas, matriz):
     for i in range(0, n_filas-1):
         for j in range(0, n_columnas-1):
             matriz[i][j] = int(matriz[i][j])
     return matriz  
+
 # Función para obtener cantidad de puestos, lista de tamaños de locales y matriz con asistentes a los locales
 def asignacion_datos(nombre_archivo):
     archivo = open('data/' + nombre_archivo, "r")
@@ -29,15 +33,17 @@ def asignacion_datos(nombre_archivo):
     return [n_puestos, l_tamano, matriz]
 
 #Función para obtener la distancia entre el puesto i y el puesto j
-def distancia_puestos(puesto_i, puesto_j, lista_tamanos):
+def distancia_puestos(lista_tamanos,solucion):
     suma_dist_int = 0
-    for intermedio in range(puesto_i-1, puesto_j-1):
+    largo = len(solucion)
+    for intermedio in range(1, largo-2):
         suma_dist_int += lista_tamanos[intermedio]
-    distancia = (lista_tamanos[puesto_i]/2) + (lista_tamanos[puesto_j]/2) + suma_dist_int 
+    distancia = (lista_tamanos[solucion[0]]/2) + (lista_tamanos[solucion[largo-1]]/2) + suma_dist_int 
     return distancia
 
 #Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
-def funcion_objetivo(pos_i,pos_j,dist_puestos,datos):
+
+def funcion_objetivo(datos):
     
     return 0
 
@@ -47,3 +53,14 @@ def criterio_termino():
 
 def solucion_inicial():
     return 0
+
+def criterio_aceptacion(s_ast,s,t_inicial):
+    delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
+    if delta_s < 0:
+        return True
+    if t_inicial == 0.2:
+        return False
+    p = math.exp(-delta_s/t_inicial)
+    if random.random() < p:
+        return True
+    return False
