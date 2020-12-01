@@ -4,6 +4,7 @@ from functions import asignacion_datos
 #Constantes
 t_inicial = 500
 alpha = 0,3
+t_minima = 0,2
 
 #Nombre del archivo de datos
 nombre_archivo = "QAP_sko56_04_n.txt"

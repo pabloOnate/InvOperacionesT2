@@ -1,5 +1,6 @@
 import math
 import random
+from processData import t_minima
 
 # Función para transformar los datos de la matriz en enteros
 def convertir_matriz_int(n_filas, n_columnas, matriz):
@@ -47,8 +48,10 @@ def funcion_objetivo(datos):
     
     return 0
 
-def criterio_termino():
-    return 0
+def criterio_termino(T):
+    if T <= t_minima:
+        return True
+    return False
 
 
 def solucion_inicial():
