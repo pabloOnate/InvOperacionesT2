@@ -121,26 +121,31 @@ def swap(solucion_inicial, numero_puestos):
     for casilla in range(numero_puestos):
         suma_porcentajes += porcentaje_casillas[0][casilla]
         if ((porcentaje_casillas[0][casilla] - porcentaje) <= random_1 <= porcentaje_casillas[0][casilla]):
-            casilla_seleccionada = casilla
+            casilla_seleccionada_r1 = casilla
         elif ((porcentaje_casillas[0][casilla] - porcentaje) <= random_2 <= porcentaje_casillas[0][casilla]):
-            casilla_seleccionada = casilla
+            casilla_seleccionada_r2 = casilla
+
+    casilla_a = solucion_inicial[casilla_seleccionada_r1]
+    casilla_b = solucion_inicial[casilla_seleccionada_r1]
+
+    solucion_inicial[casilla_a], solucion_inicial[casilla_b] = solucion_inicial[casilla_b], solucion_inicial[casilla_a]
 
 
 # Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
-def distancia_intermedia(l_tamano, i, j):
-    d = (l_tamano[i] + l_tamano[j]) / 2
-    for k = i + 1 in range(j-1):
-        d += lista_tamanos[k]
-    return d
-
-
-def funcion_objetivo(l_tamano, matriz):
-    largo = len(l_tamano)
-    for i = 1 in largo-1
-    for j = i+1 in largo
-    w = matriz[i, j]
-    d = distancia_intermedia(l_tamano, i, j)
-    objetivo = w * d
-
-
-return objetivo
+# def distancia_intermedia(l_tamano, i, j):
+#     d = (l_tamano[i] + l_tamano[j]) / 2
+#     for k = i + 1 in range(j-1):
+#         d += lista_tamanos[k]
+#     return d
+#
+#
+# def funcion_objetivo(l_tamano, matriz):
+#     largo = len(l_tamano)
+#     for i = 1 in largo-1
+#     for j = i+1 in largo
+#     w = matriz[i, j]
+#     d = distancia_intermedia(l_tamano, i, j)
+#     objetivo = w * d
+#
+#
+#     return objetivo
