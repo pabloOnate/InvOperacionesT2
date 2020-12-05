@@ -7,6 +7,10 @@ import statistics as stats
 
 print(lista_tamanos)
 print(matriz_asistentes)
+print(numero_puestos)
+print(alpha)
+print(t_inicial)
+print(t_minima)
 
 #solucion_inicial = solucion_inicial(numero_puestos)
 #print(solucion_inicial)
@@ -25,13 +29,14 @@ print(matriz_asistentes)
 resultados = []
 ejecucion = 0
 
-while ejecucion < 10:
-    resultados[ejecucion] = funcion_objetivo(simulated_annealing(numero_puestos,lista_tamanos, matriz_asistentes,t_inicial,t_minima,alpha),lista_tamanos,matriz_asistentes)
-    ejecucion += 1
-media = stats.mean(resultados)
-print(media)
-desviacion_est = stats.pstdev(resultados)
-print(desviacion_est)
+print(simulated_annealing(numero_puestos,lista_tamanos,matriz_asistentes,t_inicial,t_minima,alpha))
+#while ejecucion < 10:
+#    resultados[ejecucion] = funcion_objetivo(simulated_annealing(numero_puestos,lista_tamanos, matriz_asistentes,t_inicial,t_minima,alpha),lista_tamanos,matriz_asistentes)
+#    ejecucion += 1
+#media = stats.mean(resultados)
+#print(media)
+#desviacion_est = stats.pstdev(resultados)
+#print(desviacion_est)
 
 
 
