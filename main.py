@@ -1,6 +1,6 @@
 from numpy import shape, random
 from processData import numero_puestos, lista_tamanos, matriz_asistentes
-from functions import criterio_termino, solucion_inicial, asignacion_datos
+from functions import criterio_termino, solucion_inicial, asignacion_datos, swap
 from random import shuffle
 import numpy as np
 
@@ -17,7 +17,8 @@ print(solucion_inicial)
 #     mejorSolucion = mejorSolucion(solucion, mejorSolucion)
 
 
-
+a = swap(solucion_inicial, numero_puestos)
+print(a)
 
 
 

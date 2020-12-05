@@ -109,14 +109,18 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
 
 
 def swap(solucion_inicial, numero_puestos):
-    vecinos = np.zeros((numero_puestos, numero_puestos))
-    porcentaje = 1 / numero_puestos
-    random_1 = random.random()
-    random_2 = random.rand()
     porcentaje_casillas = np.zeros((1, numero_puestos))
+    casilla_seleccionada_r1 = 0
+    casilla_seleccionada_r2 = 0
+    #misma_casilla = casilla_seleccionada_r1 == casilla_seleccionada_r2
+    porcentaje = 1 / numero_puestos
     suma_porcentajes = 0
+
+    #while misma_casilla:
+    random_1 = random.random()
+    random_2 = random.random()
     for iter in range(numero_puestos):
-        porcentaje_casillas[0][iter] = iter + 1 * porcentaje
+        porcentaje_casillas[0][iter] = (iter + 1) * porcentaje
 
     for casilla in range(numero_puestos):
         suma_porcentajes += porcentaje_casillas[0][casilla]
@@ -126,10 +130,10 @@ def swap(solucion_inicial, numero_puestos):
             casilla_seleccionada_r2 = casilla
 
     casilla_a = solucion_inicial[casilla_seleccionada_r1]
-    casilla_b = solucion_inicial[casilla_seleccionada_r1]
-
+    casilla_b = solucion_inicial[casilla_seleccionada_r2]
     solucion_inicial[casilla_a], solucion_inicial[casilla_b] = solucion_inicial[casilla_b], solucion_inicial[casilla_a]
-
+    vecino = solucion_inicial
+    return vecino
 
 # Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
 # def distancia_intermedia(l_tamano, i, j):
