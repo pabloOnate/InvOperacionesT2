@@ -6,10 +6,15 @@ import numpy as np
 
 
 def convertir_matriz_int(n_filas, n_columnas, matriz):
-    for i in range(0, n_filas - 1):
-        for j in range(0, n_columnas - 1):
-            matriz[i][j] = int(matriz[i][j])
-    return matriz
+    nueva_matriz = []
+    if n_filas == 1:
+        for i in range(0,n_columnas):
+            nueva_matriz.append(int(matriz[i]))
+    else:
+        for i in range(0, n_filas):
+            for j in range(0, n_columnas):
+                nueva_matriz.append(int(matriz[i][j]))
+    return nueva_matriz
 
 
 # Función para obtener cantidad de puestos, lista de tamaños de locales y matriz con asistentes a los locales
@@ -30,11 +35,11 @@ def asignacion_datos(nombre_archivo):
         else:
             matriz.append(linea.rstrip().split(","))
 
-    l_tamano = convertir_matriz_int(0, len(l_tamano), l_tamano)
+    l_tamano = convertir_matriz_int(1, len(l_tamano), l_tamano)
     matriz = convertir_matriz_int(n_puestos, n_puestos, matriz)
 
     archivo.close()
-    return [n_puestos, l_tamano, matriz]
+    return [n_puestos, l_tamano, np.array(matriz).reshape(n_puestos,n_puestos) ]
 
 
 # Función para obtener la distancia entre el puesto i y el puesto j

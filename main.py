@@ -5,6 +5,9 @@ from random import shuffle
 import numpy as np
 import statistics as stats
 
+print(lista_tamanos)
+print(matriz_asistentes)
+
 #solucion_inicial = solucion_inicial(numero_puestos)
 #print(solucion_inicial)
 # vecindario = [None] * numeroPuestos
