@@ -57,23 +57,6 @@ def solucion_inicial(numero_puestos):
     np.random.shuffle(solucion_inicial)
     return solucion_inicial
 
-
-def criterio_aceptacion(s_ast, s, t_inicial):
-    delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
-    if delta_s < 0:
-        return True
-    if t_inicial == 0.2:
-        return False
-    p = math.exp(-delta_s / t_inicial)
-    if random.random() < p:
-        return True
-    return False
-
-
-def mejor_solucion(s, s_plus):
-    return 0
-
-
 def enfriamiento(t, alpha):
     t = t * alpha
     return t
@@ -85,19 +68,19 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
     T = t_inicial
     while not criterio_termino(T, t_minima):
         s_ast = swap(s, numero_puestos)
-        delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
+        delta_s = funcion_objetivo(s_ast,lista_tamanos,matriz_asistentes) - funcion_objetivo(s,lista_tamanos,matriz_asistentes)
         if delta_s < 0:
             s = s_ast
         else:
             p = math.exp(-delta_s / t_inicial)
             if random.random() < p:
                 s = s_ast
-        s_plus = mejor_solucion(s, s_plus)
+        s_plus = mejor_solucion(s, s_plus,lista_tamanos,matriz_asistentes)
         T = enfriamiento(T, alpha)
     return s_plus
 
-def mejor_solucion(s, s_plus):
-    return(min(funcion_objetivo(s), funcion_objetivo(s_plus)))
+def mejor_solucion(s, s_plus,l_tamano,matriz):
+    return(min(funcion_objetivo(s,l_tamano,matriz), funcion_objetivo(s_plus,l_tamano,matriz)))
 
 def swap(solucion_inicial, numero_puestos):
     porcentaje_casillas = np.zeros((1, numero_puestos))
@@ -128,9 +111,8 @@ def swap(solucion_inicial, numero_puestos):
 
 #Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
 def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
-   objetivo = 0
-   d = distancia_puestos(l_tamano, solucion)
-   for i in matriz_asistentes:
-        objetivo += i * d
-
-    return objetivo
+    d = distancia_puestos(l_tamano, solucion)
+    for i in range(0,len(solucion)-2):
+        w = matriz_asistentes[solucion[i]][solucion[i+1]]
+    valor_obj = w*d
+    return valor_obj
