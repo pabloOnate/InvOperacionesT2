@@ -5,38 +5,23 @@ from random import shuffle
 import numpy as np
 import statistics as stats
 
-print(lista_tamanos)
-print(matriz_asistentes)
-print(numero_puestos)
-print(alpha)
-print(t_inicial)
-print(t_minima)
-
-#solucion_inicial = solucion_inicial(numero_puestos)
-#print(solucion_inicial)
-# vecindario = [None] * numeroPuestos
-# solucion = solucion_inicial()
-# while (criterio_termino() != True):
-#     nuevaSolucion = siguiente_vecino(vecindario)
-#
-#     if(criterio_aceptacion(nuevaSolucion, solucion) == True):
-#         solucion = nuevaSolucion
-#
-#     mejorSolucion = mejorSolucion(solucion, mejorSolucion)
-#a = swap(solucion_inicial, numero_puestos)
-#print(a)
-
+soluciones = []
 resultados = []
 ejecucion = 0
 
-print(simulated_annealing(numero_puestos,lista_tamanos,matriz_asistentes,t_inicial,t_minima,alpha))
-#while ejecucion < 10:
-#    resultados[ejecucion] = funcion_objetivo(simulated_annealing(numero_puestos,lista_tamanos, matriz_asistentes,t_inicial,t_minima,alpha),lista_tamanos,matriz_asistentes)
-#    ejecucion += 1
-#media = stats.mean(resultados)
-#print(media)
-#desviacion_est = stats.pstdev(resultados)
-#print(desviacion_est)
+while ejecucion < 10:
+    soluciones.append(simulated_annealing(numero_puestos,lista_tamanos, matriz_asistentes,t_inicial,t_minima,alpha))
+    resultados.append(funcion_objetivo(soluciones[ejecucion],lista_tamanos,matriz_asistentes))
+    ejecucion += 1
+
+print("Soluciones")
+print(soluciones)
+print("Funciones objetivos")
+print(resultados)
+media = stats.mean(resultados)
+print("Media: ",media)
+desviacion_est = stats.pstdev(resultados)
+print("Desviacion Estandar: ",desviacion_est)
 
 
 

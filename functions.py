@@ -122,6 +122,7 @@ def swap(solucion_inicial, numero_puestos):
     vecino = solucion_inicial
     return vecino
 
+
 #Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
 def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
     d = distancia_puestos(l_tamano, solucion)
