@@ -46,13 +46,6 @@ def distancia_puestos(lista_tamanos, solucion):
     distancia = (lista_tamanos[solucion[0]] / 2) + (lista_tamanos[solucion[largo - 1]] / 2) + suma_dist_int
     return distancia
 
-
-# Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
-
-def funcion_objetivo(datos):
-    return 0
-
-
 def criterio_termino(T, t_minima):
     if T <= t_minima:
         return True
@@ -78,10 +71,6 @@ def criterio_aceptacion(s_ast, s, t_inicial):
 
 
 def mejor_solucion(s, s_plus):
-    return 0
-
-
-def siguiente_vecino():
     return 0
 
 
@@ -135,21 +124,12 @@ def swap(solucion_inicial, numero_puestos):
     vecino = solucion_inicial
     return vecino
 
-# Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
-# def distancia_intermedia(l_tamano, i, j):
-#     d = (l_tamano[i] + l_tamano[j]) / 2
-#     for k = i + 1 in range(j-1):
-#         d += lista_tamanos[k]
-#     return d
-#
-#
-# def funcion_objetivo(l_tamano, matriz):
-#     largo = len(l_tamano)
-#     for i = 1 in largo-1
-#     for j = i+1 in largo
-#     w = matriz[i, j]
-#     d = distancia_intermedia(l_tamano, i, j)
-#     objetivo = w * d
-#
-#
-#     return objetivo
+#Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
+def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
+   objetivo = 0
+   d = distancia_puestos(l_tamano, solucion)
+   for i in matriz_asistentes
+        w = matriz_asistentes[i]
+        objetivo += w * d
+
+return objetivo
