@@ -71,7 +71,7 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
     s = solucion_inicial(numero_puestos)
     s_plus = s
     T = t_inicial
-    while not criterio_termino(T, t_minima):
+    while criterio_termino(T, t_minima):
         s_ast = swap(s, numero_puestos)
         delta_s = funcion_objetivo(s_ast,lista_tamanos,matriz_asistentes) - funcion_objetivo(s,lista_tamanos,matriz_asistentes)
         if delta_s < 0:
