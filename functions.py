@@ -84,7 +84,7 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
     s_plus = s
     T = t_inicial
     while not criterio_termino(T, t_minima):
-        s_ast = siguiente_vecino()
+        s_ast = swap(s, numero_puestos)
         delta_s = funcion_objetivo(s_ast) - funcion_objetivo(s)
         if delta_s < 0:
             s = s_ast
@@ -96,6 +96,8 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
         T = enfriamiento(T, alpha)
     return s_plus
 
+def mejor_solucion(s, s_plus):
+    return(min(funcion_objetivo(s), funcion_objetivo(s_plus)))
 
 def swap(solucion_inicial, numero_puestos):
     porcentaje_casillas = np.zeros((1, numero_puestos))
@@ -128,8 +130,8 @@ def swap(solucion_inicial, numero_puestos):
 def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
    objetivo = 0
    d = distancia_puestos(l_tamano, solucion)
-   for i in matriz_asistentes
+   for i in matriz_asistentes:
         w = matriz_asistentes[i]
         objetivo += w * d
 
-return objetivo
+    return objetivo
