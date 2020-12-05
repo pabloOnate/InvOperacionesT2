@@ -131,7 +131,6 @@ def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
    objetivo = 0
    d = distancia_puestos(l_tamano, solucion)
    for i in matriz_asistentes:
-        w = matriz_asistentes[i]
-        objetivo += w * d
+        objetivo += i * d
 
     return objetivo
