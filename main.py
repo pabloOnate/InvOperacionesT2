@@ -4,7 +4,10 @@ from functions import simulated_annealing,funcion_objetivo
 from random import shuffle
 import numpy as np
 import statistics as stats
+import time
 
+#@Tiempo de Inicio de la Ejecución
+start_time = time.time()
 #@param soluciones: contentra los vectores de las 10 soluciones que se crean al iterar 10 veces la metaheuristica
 soluciones = []
 #@param resultados: contendra los valores de las funciones objetivo de cada una de las soluciones.
@@ -26,7 +29,7 @@ media = stats.mean(resultados)
 print("Media: ",media)
 desviacion_est = stats.pstdev(resultados)
 print("Desviacion Estandar: ",desviacion_est)
-
+print("Tiempo de ejecución: %s segundos" % (time.time() - start_time))
 
 
     
