@@ -80,7 +80,15 @@ def simulated_annealing(numero_puestos, lista_tamanos, matriz_asistentes, t_inic
     return s_plus
 
 def mejor_solucion(s, s_plus,l_tamano,matriz):
-    return(min(funcion_objetivo(s,l_tamano,matriz), funcion_objetivo(s_plus,l_tamano,matriz)))
+    try:
+        s = funcion_objetivo(s, l_tamano, matriz)
+        s_plus = funcion_objetivo(s_plus, l_tamano, matriz)
+        if s < s_plus:
+            return s
+        elif s_plus < s:
+            return s_plus
+    except Exception as e:
+        print(str(e))
 
 def swap(solucion_inicial, numero_puestos):
     porcentaje_casillas = np.zeros((1, numero_puestos))
