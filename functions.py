@@ -59,9 +59,12 @@ def distancia_puestos(lista_tamanos, solucion):
     '''
     suma_dist_int = 0
     largo = len(solucion)
-    for intermedio in range(1, largo - 2):
-        suma_dist_int += lista_tamanos[intermedio]
-    distancia = (lista_tamanos[solucion[0]] / 2) + (lista_tamanos[solucion[largo - 1]] / 2) + suma_dist_int
+    if largo == 2:
+        distancia = (lista_tamanos[solucion[0]-1] / 2) + (lista_tamanos[solucion[largo - 1]] / 2)
+    else:
+        for intermedio in range(1,largo - 1):
+            suma_dist_int += lista_tamanos[solucion[intermedio]]
+        distancia = (lista_tamanos[solucion[0]-1] / 2) + (lista_tamanos[solucion[largo - 1]] / 2) + suma_dist_int
     return distancia
 
 # Función que ira evaluando si la temperatura es menor a la temperatura minima
@@ -176,7 +179,6 @@ def swap(solucion_inicial, numero_puestos):
     vecino = solucion_inicial
     return vecino
 
-
 #Función objetivo para minimizar los tiempos según la distancia entre puestos y cantidad de clientes que asisten a los puesto i y j
 def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
     '''
@@ -185,9 +187,8 @@ def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
     @param matriz_asistentes: Una matriz con valores enteros que representan el flujo de clientes entre puestos
     @return valor_obj: Retorna un valor entero que es la funcion objetivo
     '''
-    d = distancia_puestos(l_tamano, solucion)
-    w = 0
+    valor_obj = 0
     for i in range(len(solucion)-1):
-        w += matriz_asistentes[solucion[i],solucion[i+1]]
-    valor_obj = w*d
+        for j in range(i+1,len(solucion)):
+            valor_obj += distancia_puestos(l_tamano,solucion[i:j+1]) + matriz_asistentes[solucion[i],solucion[j]]
     return valor_obj
