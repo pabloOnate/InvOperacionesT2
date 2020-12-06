@@ -190,5 +190,5 @@ def funcion_objetivo(solucion, l_tamano, matriz_asistentes):
     valor_obj = 0
     for i in range(len(solucion)-1):
         for j in range(i+1,len(solucion)):
-            valor_obj += distancia_puestos(l_tamano,solucion[i:j+1]) + matriz_asistentes[solucion[i],solucion[j]]
+            valor_obj += distancia_puestos(l_tamano,solucion[i:j+1])*matriz_asistentes[solucion[i],solucion[j]]
     return valor_obj
